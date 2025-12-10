@@ -1,0 +1,71 @@
+/* CSS code from examples at https://pagedjs.org/documentation */
+
+		body {
+			counter-reset: countChapter;
+			font-family: courier;
+		}
+
+		@page {
+			size: A5;
+			
+		}
+
+		@page:left {
+		  margin-left: 25mm;
+		  margin-right: 18mm;
+			
+		  @top-left {
+		  	content: counter(page);
+			  
+		  }
+		}
+
+		@page:right {
+		  margin-left: 18mm;
+		  margin-right: 25mm;
+
+
+		  @top-right {
+		  	content: counter(page);
+			
+		  }
+		}
+
+		@page:first {
+			@top-right {
+		  	content: '';
+	
+		  }
+		}
+
+		p {
+			text-align:justify;
+		}
+
+
+		h2 {
+			break-before: page;
+			counter-increment: countChapter;
+			
+		}
+		h2::before {
+			content: "Chapter " counter(countChapter);
+			display: block;
+			font-size: 75%;
+			font-variant: all-small-caps;
+			margin-top: 30mm;
+		}
+
+		h1 {
+			/*break-after: page;*/
+			margin-top: 30mm;
+			text-align: center;
+			font-size: 10mm;
+		}
+
+		subtitle {
+			text-align: center;
+			break-after: page;
+			font-size: 10mm;
+			display: block;
+		}
